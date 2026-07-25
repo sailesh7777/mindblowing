@@ -1,0 +1,295 @@
+/* ============================================================
+   Mind Blowing Technologies — global styles
+   Custom keyframes + utility classes that supplement Tailwind Play CDN.
+   ============================================================ */
+
+:root {
+  --hero-gradient-1: radial-gradient(120% 80% at 85% 0%, hsl(267 70% 22% / 0.9) 0%, transparent 60%);
+  --hero-gradient-2: radial-gradient(120% 80% at 0% 100%, hsl(215 80% 26% / 0.85) 0%, transparent 55%);
+  --hero-gradient-3: linear-gradient(135deg, hsl(232 65% 6%) 0%, hsl(234 60% 11%) 35%, hsl(255 55% 16%) 65%, hsl(280 55% 14%) 100%);
+  --gradient-aurora: conic-gradient(from 210deg at 50% 50%, hsl(215 100% 60% / 0.4), hsl(267 90% 67% / 0.4), hsl(232 70% 30% / 0.4), hsl(215 100% 60% / 0.4));
+  --gradient-accent: linear-gradient(135deg, hsl(215 100% 60%) 0%, hsl(267 90% 67%) 100%);
+  --shadow-glow: 0 0 24px hsl(215 100% 60% / 0.35), 0 0 56px hsl(267 90% 67% / 0.28);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "DM Sans", Inter, system-ui, sans-serif;
+  background: hsl(224 78% 5%);
+  color: hsl(220 35% 97%);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Space Grotesk", "DM Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+/* Focus ring — accessibility */
+:focus-visible {
+  outline: 2px solid hsl(215 100% 60%);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* ============================================================
+   Gradient text utility (used for headline standout words)
+   ============================================================ */
+.gradient-text {
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Hero cosmic gradient — used behind the whole hero section */
+.hero-gradient {
+  background:
+    var(--hero-gradient-1),
+    var(--hero-gradient-2),
+    var(--hero-gradient-3);
+}
+
+/* Starfield utility — subtle pinpoints repeated across a surface */
+.starfield {
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, hsl(0 0% 100% / 0.6) 50%, transparent 51%),
+    radial-gradient(1px 1px at 70% 65%, hsl(0 0% 100% / 0.45) 50%, transparent 51%),
+    radial-gradient(1.5px 1.5px at 40% 80%, hsl(215 100% 80% / 0.55) 50%, transparent 51%),
+    radial-gradient(1px 1px at 85% 20%, hsl(267 90% 80% / 0.5) 50%, transparent 51%),
+    radial-gradient(1px 1px at 10% 70%, hsl(0 0% 100% / 0.4) 50%, transparent 51%);
+  background-size: 280px 280px;
+  background-repeat: repeat;
+}
+
+/* ============================================================
+   Buttons — hero variants
+   ============================================================ */
+.btn-hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  color: white;
+  background: var(--gradient-accent);
+  box-shadow: var(--shadow-glow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border: none;
+  font-size: 0.95rem;
+}
+
+.btn-hero:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.btn-hero:active {
+  transform: scale(0.98);
+}
+
+.btn-hero-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.75rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  color: white;
+  background: hsl(0 0% 100% / 0.05);
+  border: 1px solid hsl(0 0% 100% / 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.btn-hero-outline:hover {
+  transform: translateY(-2px) scale(1.02);
+  background: hsl(0 0% 100% / 0.1);
+}
+
+.btn-hero-outline:active {
+  transform: scale(0.98);
+}
+
+/* ============================================================
+   Global keyframe library
+   ============================================================ */
+
+/* Slow float — subtle Y bob */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+.animate-float { animation: float 6s ease-in-out infinite; }
+
+/* Hero glow orbs — organic drift */
+@keyframes hero-glow {
+  0%, 100% { transform: translate(0, 0) scale(1);    opacity: 0.6; }
+  33%      { transform: translate(40px, -30px) scale(1.15); opacity: 1;   }
+  66%      { transform: translate(-20px, 20px) scale(0.9);  opacity: 0.5; }
+}
+.animate-hero-glow { animation: hero-glow 10s ease-in-out infinite; }
+
+@keyframes hero-glow-reverse {
+  0%, 100% { transform: translate(0, 0) scale(1);    opacity: 0.5; }
+  33%      { transform: translate(-30px, 20px) scale(1.1); opacity: 0.8; }
+  66%      { transform: translate(25px, -15px) scale(0.85); opacity: 0.4; }
+}
+.animate-hero-glow-reverse { animation: hero-glow-reverse 12s ease-in-out infinite; }
+
+/* Star twinkle */
+@keyframes star-twinkle {
+  0%, 100% { opacity: 0.35; }
+  50%      { opacity: 0.9;  }
+}
+
+/* AI network node pulse */
+@keyframes ai-node-pulse {
+  0%, 100% { opacity: 0.35; transform: scale(1);   }
+  50%      { opacity: 0.9;  transform: scale(1.4); }
+}
+
+/* AI network line data stream */
+@keyframes data-stream {
+  0%   { stroke-dashoffset: 0;   }
+  100% { stroke-dashoffset: -40; }
+}
+
+/* Astronaut zero-g drift */
+@keyframes astronaut-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-3deg); }
+  50%      { transform: translate3d(-6px, -18px, 0) rotate(4deg); }
+}
+.astronaut-drift { animation: astronaut-drift 8s ease-in-out infinite; will-change: transform; }
+.astronaut-drift-reverse { animation: astronaut-drift 10s ease-in-out infinite reverse; will-change: transform; }
+
+/* Ping — dot pulse in the trust badge */
+@keyframes ping {
+  75%, 100% { transform: scale(2); opacity: 0; }
+}
+.animate-ping { animation: ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite; }
+
+/* Bounce — scroll indicator */
+@keyframes indicator-bounce {
+  0%, 100% { transform: translateY(0); opacity: 1;   }
+  50%      { transform: translateY(12px); opacity: 0.4; }
+}
+.animate-indicator { animation: indicator-bounce 1.8s ease-in-out infinite; }
+
+/* Entrance — fade + slide up when element enters viewport */
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.fade-up.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* Staggered — data-delay="N" applies N*80ms delay */
+.fade-up[data-delay="1"] { transition-delay: 0.08s; }
+.fade-up[data-delay="2"] { transition-delay: 0.16s; }
+.fade-up[data-delay="3"] { transition-delay: 0.24s; }
+.fade-up[data-delay="4"] { transition-delay: 0.32s; }
+.fade-up[data-delay="5"] { transition-delay: 0.40s; }
+.fade-up[data-delay="6"] { transition-delay: 0.48s; }
+
+/* Headline underline reveal */
+.hero-underline {
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 1.05s;
+}
+.hero-underline.in-view { transform: scaleX(1); }
+
+/* Reduced motion — freeze all decorative loops */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .fade-up { opacity: 1; transform: none; }
+  .hero-underline { transform: scaleX(1); }
+}
+
+/* ============================================================
+   Layout helpers
+   ============================================================ */
+.container-custom {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+@media (min-width: 640px) {
+  .container-custom { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+@media (min-width: 1024px) {
+  .container-custom { padding-left: 2rem; padding-right: 2rem; }
+}
+
+.section-padding {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+@media (min-width: 768px) {
+  .section-padding { padding-top: 6rem; padding-bottom: 6rem; }
+}
+@media (min-width: 1024px) {
+  .section-padding { padding-top: 8rem; padding-bottom: 8rem; }
+}
+
+/* Card shadows */
+.card-shadow {
+  box-shadow: 0 4px 20px hsl(232 45% 5% / 0.4);
+}
+
+/* ============================================================
+   Form field validation feedback
+   .touched is added by JS after blur so the initial state stays
+   clean, and only fields the user has interacted with go red on
+   invalid.
+   ============================================================ */
+.form-field.touched:invalid,
+.form-field.touched:user-invalid {
+  border-color: hsl(0 80% 60%);
+  background-color: hsl(0 80% 60% / 0.06);
+}
+.form-field.touched:invalid:focus,
+.form-field.touched:user-invalid:focus {
+  outline: 2px solid hsl(0 80% 60% / 0.5);
+  outline-offset: 2px;
+}
+
+/* Select-option popup styling
+   Native <option> elements render inside a browser-drawn popup that
+   inherits `color` from the <select> but NOT the transparent background.
+   Without an explicit background-color the OS default (usually white)
+   is used, and white-on-white text becomes unreadable on a dark form.
+   Setting both here forces a consistent legible popup on every browser. */
+.form-field option,
+select option {
+  background-color: hsl(224 65% 10%);
+  color: hsl(0 0% 100%);
+}
+.form-field option:disabled,
+select option:disabled {
+  color: hsl(0 0% 100% / 0.5);
+}
+.form-field option:checked,
+select option:checked {
+  background-color: hsl(215 100% 60% / 0.25);
+}
