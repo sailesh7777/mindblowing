@@ -474,102 +474,60 @@
           </a>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          <!-- 1. Web Design -->
-          <article class="fade-up group relative rounded-2xl overflow-hidden border border-white/10 hover:-translate-y-1 hover:border-white/25 transition-all duration-500" style="background: hsl(224 65% 8% / 0.7)" data-delay="1">
-            <div class="relative aspect-[3/2] overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?auto=format&fit=crop&w=900&h=600&q=80" alt="Website design case study" loading="lazy" width="900" height="600" class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110" />
-              <div class="absolute inset-0 bg-gradient-to-t from-nexora-bg/60 to-transparent"></div>
-              <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-nexora-bg/85 backdrop-blur-md px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-accent">
-                <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                Web Design
-              </span>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">Luxe Estate</h3>
-              <p class="text-white/70 text-sm leading-relaxed">A conversion-focused marketing site for a luxury real-estate brand — cinematic imagery, immersive tour embeds, and a lead-capture flow tuned for premium enquiries.</p>
-            </div>
-          </article>
+        <!-- 2 real shipped projects — larger cards to give each proper visual
+             weight. Add more <article> blocks below as new work ships. -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-          <!-- 2. Mobile App -->
-          <article class="fade-up group relative rounded-2xl overflow-hidden border border-white/10 hover:-translate-y-1 hover:border-white/25 transition-all duration-500" style="background: hsl(224 65% 8% / 0.7)" data-delay="2">
-            <div class="relative aspect-[3/2] overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&h=600&q=80" alt="Mobile app case study" loading="lazy" width="900" height="600" class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110" />
-              <div class="absolute inset-0 bg-gradient-to-t from-nexora-bg/60 to-transparent"></div>
-              <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-nexora-bg/85 backdrop-blur-md px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-accent">
-                <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                Mobile App
-              </span>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">FitPulse</h3>
-              <p class="text-white/70 text-sm leading-relaxed">Cross-platform fitness tracker built in React Native — offline-first workouts, wearables sync, and push-notification reminders that lifted 7-day retention.</p>
-            </div>
-          </article>
-
-          <!-- 3. Web App -->
-          <article class="fade-up group relative rounded-2xl overflow-hidden border border-white/10 hover:-translate-y-1 hover:border-white/25 transition-all duration-500" style="background: hsl(224 65% 8% / 0.7)" data-delay="3">
-            <div class="relative aspect-[3/2] overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&h=600&q=80" alt="TechFlow Dashboard — SaaS analytics web application" loading="lazy" width="900" height="600" class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110" />
+          <!-- 1. Saveur Food Ordering App -->
+          <article class="fade-up group relative rounded-2xl overflow-hidden border border-white/10 hover:-translate-y-1 hover:border-white/25 transition-all duration-500 flex flex-col" style="background: hsl(224 65% 8% / 0.7)" data-delay="1">
+            <div class="relative aspect-video overflow-hidden">
+              <img src="images/Food_OrderingApp.png" alt="Saveur — food ordering web app" loading="lazy" width="1200" height="675" class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105" />
               <div class="absolute inset-0 bg-gradient-to-t from-nexora-bg/60 to-transparent"></div>
               <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-nexora-bg/85 backdrop-blur-md px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-accent">
                 <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
                 Web App
               </span>
             </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">TechFlow Dashboard</h3>
-              <p class="text-white/70 text-sm leading-relaxed">Real-time analytics platform for a SaaS company — React + TypeScript, custom charting, and role-based access. Ships with a 90+ Lighthouse score.</p>
+            <div class="p-6 md:p-8 flex flex-col flex-1">
+              <h3 class="text-xl md:text-2xl font-semibold text-white mb-3 group-hover:text-accent transition-colors">Saveur Food Ordering App</h3>
+              <p class="text-white/70 leading-relaxed mb-6 flex-1">Order from your favourite kitchens in just a few clicks. Fresh ingredients, unforgettable flavours and lightning-fast delivery — all in one beautiful experience.</p>
+              <a
+                href="https://id-preview--f3f60f6b-4797-47ae-9afa-3a0efd2b60eb.lovable.app/#home"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-accent font-semibold hover:gap-3 transition-all self-start"
+              >
+                View Live Project
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+              </a>
             </div>
           </article>
 
-          <!-- 4. AI Automation -->
-          <article class="fade-up group relative rounded-2xl overflow-hidden border border-white/10 hover:-translate-y-1 hover:border-white/25 transition-all duration-500" style="background: hsl(224 65% 8% / 0.7)" data-delay="4">
-            <div class="relative aspect-[3/2] overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&h=600&q=80" alt="HealthHub AI — automation platform" loading="lazy" width="900" height="600" class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110" />
+          <!-- 2. Neuroflow — Future of AI Business -->
+          <article class="fade-up group relative rounded-2xl overflow-hidden border border-white/10 hover:-translate-y-1 hover:border-white/25 transition-all duration-500 flex flex-col" style="background: hsl(224 65% 8% / 0.7)" data-delay="2">
+            <div class="relative aspect-video overflow-hidden">
+              <img src="images/Ai_Company.png" alt="Neuroflow — AI business automation website" loading="lazy" width="1200" height="675" class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105" />
               <div class="absolute inset-0 bg-gradient-to-t from-nexora-bg/60 to-transparent"></div>
               <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-nexora-bg/85 backdrop-blur-md px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-accent">
                 <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                AI Automation
+                AI Solutions
               </span>
             </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">HealthHub AI</h3>
-              <p class="text-white/70 text-sm leading-relaxed">AI-powered patient-management workflows — smart intake triage, automated scheduling, and RAG-assisted care notes that cut admin time by 60%.</p>
+            <div class="p-6 md:p-8 flex flex-col flex-1">
+              <h3 class="text-xl md:text-2xl font-semibold text-white mb-3 group-hover:text-accent transition-colors">Neuroflow — Future of AI Business</h3>
+              <p class="text-white/70 leading-relaxed mb-6 flex-1">The Future of Business Automation Starts with AI. From AI Chatbots to Autonomous AI Agents, we help businesses automate operations, delight customers, and unlock measurable growth.</p>
+              <a
+                href="https://id-preview--649b2dc5-0349-4dbf-a34b-acefcd6a8def.lovable.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 text-accent font-semibold hover:gap-3 transition-all self-start"
+              >
+                View Live Project
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>
+              </a>
             </div>
           </article>
 
-          <!-- 5. UI/UX Design -->
-          <article class="fade-up group relative rounded-2xl overflow-hidden border border-white/10 hover:-translate-y-1 hover:border-white/25 transition-all duration-500" style="background: hsl(224 65% 8% / 0.7)" data-delay="5">
-            <div class="relative aspect-[3/2] overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?auto=format&fit=crop&w=900&h=600&q=80" alt="UI/UX design system case study" loading="lazy" width="900" height="600" class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110" />
-              <div class="absolute inset-0 bg-gradient-to-t from-nexora-bg/60 to-transparent"></div>
-              <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-nexora-bg/85 backdrop-blur-md px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-accent">
-                <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                UI / UX Design
-              </span>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">Nova Design System</h3>
-              <p class="text-white/70 text-sm leading-relaxed">A production-grade Figma library plus Tailwind + Radix component kit — 80+ tokens, accessibility-first, and used across three product surfaces.</p>
-            </div>
-          </article>
-
-          <!-- 6. Branding -->
-          <article class="fade-up group relative rounded-2xl overflow-hidden border border-white/10 hover:-translate-y-1 hover:border-white/25 transition-all duration-500" style="background: hsl(224 65% 8% / 0.7)" data-delay="6">
-            <div class="relative aspect-[3/2] overflow-hidden">
-              <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=900&h=600&q=80" alt="Brand identity case study" loading="lazy" width="900" height="600" class="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-110" />
-              <div class="absolute inset-0 bg-gradient-to-t from-nexora-bg/60 to-transparent"></div>
-              <span class="absolute top-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-nexora-bg/85 backdrop-blur-md px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-accent">
-                <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                Branding
-              </span>
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-semibold text-white mb-2 group-hover:text-accent transition-colors">Verde Brand Identity</h3>
-              <p class="text-white/70 text-sm leading-relaxed">Full identity system for a sustainable-goods brand — logo suite, palette, verbal identity, and 40-page brand guidelines rolled out across every touchpoint.</p>
-            </div>
-          </article>
         </div>
       </div>
     </section>
