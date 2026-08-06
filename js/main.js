@@ -82,24 +82,18 @@
     document.querySelectorAll(".fade-up, .hero-underline").forEach((el) => el.classList.add("in-view"));
   }
 
-  // ── Contact form: HTML5 validation + mailto delivery ─────────
+  // ── Contact form: HTML5 validation + Formspree delivery ──────
   //
   // Every field is `required`, so the browser blocks submission until all
-  // are filled — no custom validation needed beyond the native tooltips.
-  // On successful submit we build a mailto: URL addressed to
-  // sailesh@mindblowing-tech.com containing the full enquiry, then hand
-  // off to the visitor's default email client.
+  // are filled — the native tooltips handle "please fill this in" prompts.
+  // On successful validation we POST the FormData to the Formspree endpoint
+  // configured on the <form>'s `action` attribute. Formspree receives the
+  // submission, applies its honeypot + spam filters, and forwards the
+  // enquiry as an email to the Zoho inbox associated with the form (that's
+  // sailesh@mindblowing-tech.com for this site).
   //
-  // → For a fully server-driven form (no email client required, submission
-  //   tracking, spam protection), swap the mailto step for a POST to a
-  //   form endpoint. Example with Formspree — register at formspree.io,
-  //   create a form, then:
-  //     await fetch("https://formspree.io/f/YOUR_ID", {
-  //       method: "POST",
-  //       headers: { "Accept": "application/json" },
-  //       body: new FormData(contactForm),
-  //     });
-  const CONTACT_TO = "sailesh@mindblowing-tech.com";
+  // Everything runs client-side over HTTPS — no backend required, works
+  // fine on a GitHub Pages static host.
   const contactForm = document.querySelector("[data-contact-form]");
   if (contactForm) {
     // Only show :invalid styling after the user has interacted with a field,
@@ -108,68 +102,78 @@
       field.addEventListener("blur", () => field.classList.add("touched"));
     });
 
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
+    const setStatus = (message, tone) => {
       const status = contactForm.querySelector("[data-form-status]");
+      if (!status) return;
+      status.textContent = message;
+      status.classList.remove("hidden");
+      // Tone classes map to Tailwind semantic colours
+      const toneClass = tone === "error" ? "text-red-300" : "text-emerald-300";
+      status.className = `text-sm ${toneClass}`;
+    };
+
+    contactForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
       const submitBtn = contactForm.querySelector('button[type="submit"]');
 
       // Native HTML5 validation — if anything's invalid, the browser shows
       // its own tooltip pointing at the offending field.
       if (!contactForm.checkValidity()) {
         contactForm.reportValidity();
-        // Mark every field as touched so the invalid ones stay red
         contactForm.querySelectorAll(".form-field").forEach((field) => {
           field.classList.add("touched");
         });
         return;
       }
 
-      // Pull values from the form
-      const data = new FormData(contactForm);
-      const name    = String(data.get("name") || "").trim();
-      const email   = String(data.get("email") || "").trim();
-      const phone   = String(data.get("phone") || "").trim();
-      const service = String(data.get("service") || "").trim();
-      const message = String(data.get("message") || "").trim();
-
-      // Build the email
-      const subject = `New enquiry from ${name} — ${service}`;
-      const bodyLines = [
-        `Name:     ${name}`,
-        `Email:    ${email}`,
-        `Phone:    ${phone}`,
-        `Service:  ${service}`,
-        "",
-        "Project Details",
-        "---------------",
-        message,
-        "",
-        `— Sent from mindblowing-tech.com contact form`,
-      ];
-      const mailto =
-        "mailto:" + encodeURIComponent(CONTACT_TO) +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(bodyLines.join("\r\n"));
-
-      // Kick off the email client
-      window.location.href = mailto;
-
-      // Friendly confirmation. The user still needs to press Send in their
-      // mail app, so the wording nudges toward that step.
-      if (status) {
-        status.textContent =
-          "Your email client is opening — please click Send to complete your enquiry.";
-        status.className = "text-sm text-emerald-300";
+      // Disable the button + swap label so the visitor knows we're working.
+      const originalLabel = submitBtn ? submitBtn.textContent : "Send Message";
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
       }
-      // Small delay so the user sees the confirmation before we clear the form
-      if (submitBtn) submitBtn.disabled = true;
-      setTimeout(() => {
-        contactForm.reset();
-        contactForm
-          .querySelectorAll(".form-field")
-          .forEach((field) => field.classList.remove("touched"));
-        if (submitBtn) submitBtn.disabled = false;
-      }, 2000);
+
+      try {
+        const response = await fetch(contactForm.action, {
+          method: contactForm.method || "POST",
+          body: new FormData(contactForm),
+          // Asking for JSON back tells Formspree to reply with a JSON body
+          // instead of redirecting the browser — lets us keep the visitor
+          // on the page and show an inline confirmation.
+          headers: { Accept: "application/json" },
+        });
+
+        if (response.ok) {
+          setStatus(
+            "Thanks — your message is on its way. We'll reply within one business day.",
+            "success"
+          );
+          contactForm.reset();
+          contactForm
+            .querySelectorAll(".form-field")
+            .forEach((field) => field.classList.remove("touched"));
+        } else {
+          // Formspree returns a JSON payload with error details on 4xx.
+          const data = await response.json().catch(() => ({}));
+          const msg =
+            (Array.isArray(data?.errors) &&
+              data.errors.map((err) => err.message).filter(Boolean).join(", ")) ||
+            "Something went wrong. Please email sailesh@mindblowing-tech.com directly.";
+          setStatus(msg, "error");
+        }
+      } catch (err) {
+        // Network failure / offline / DNS problem — fall back to a mailto
+        // link in the error message so the visitor still has a route to us.
+        setStatus(
+          "Couldn't reach the server. Please email sailesh@mindblowing-tech.com directly.",
+          "error"
+        );
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalLabel;
+        }
+      }
     });
   }
 

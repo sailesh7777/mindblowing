@@ -196,17 +196,30 @@
             </div>
           </aside>
 
-          <!-- Contact form. All fields required. On submit the form opens
-               the visitor's email client pre-addressed to
-               sailesh@mindblowing-tech.com with the full enquiry as the
-               body — no third-party service required. See js/main.js for
-               the handler and a note on wiring a real form endpoint. -->
+          <!-- Contact form. Submits over HTTPS to Formspree, which forwards
+               the enquiry to the Zoho inbox associated with this endpoint
+               (sailesh@mindblowing-tech.com). The JS handler in main.js
+               posts via fetch() and shows an inline success/error message
+               — no page reload. -->
           <div class="fade-up" data-delay="2">
-            <form data-contact-form class="rounded-3xl border border-white/10 p-8 space-y-5" style="background: hsl(224 65% 10% / 0.72); box-shadow: 0 0 40px -16px hsl(267 90% 67% / 0.4);">
+            <form
+              data-contact-form
+              action="https://formspree.io/f/xojgppvj"
+              method="POST"
+              class="rounded-3xl border border-white/10 p-8 space-y-5"
+              style="background: hsl(224 65% 10% / 0.72); box-shadow: 0 0 40px -16px hsl(267 90% 67% / 0.4);"
+            >
               <div>
                 <h2 class="text-2xl font-semibold text-white mb-1">Send us a message</h2>
                 <p class="text-white/60 text-sm">Fields marked with <span class="text-red-400">*</span> are required.</p>
               </div>
+
+              <!-- Formspree meta fields:
+                   _subject sets the email subject line delivered to Zoho.
+                   _gotcha is a hidden honeypot — bots fill it, humans don't,
+                   Formspree auto-rejects submissions that populate it. -->
+              <input type="hidden" name="_subject" value="New enquiry from mindblowing-tech.com" />
+              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;" aria-hidden="true" />
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
